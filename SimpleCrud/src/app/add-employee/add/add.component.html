@@ -1,0 +1,112 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<div class="container mt-5">
+  <div class="row">
+    <form [formGroup]="formContract">
+      <div class="form-group">
+        <label for="First-name">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="First-name"
+          formControlName="firstName"
+          name="First-name"
+          placeholder=""
+        />
+      </div>
+      <div
+        *ngIf="
+          formContract.get('firstName')?.touched &&
+          formContract.get('firstName')?.invalid
+        "
+      >
+        <small
+          *ngIf="formContract.get('firstName')?.hasError('required')"
+          class="text-danger"
+        >
+          First Name is required.
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="lastName"
+          name="last"
+          id="last-name"
+          placeholder=""
+        />
+      </div>
+      <div
+        *ngIf="
+          formContract.get('lastName')?.touched &&
+          formContract.get('lastName')?.invalid
+        "
+      >
+        <small
+          *ngIf="formContract.get('lastName')?.hasError('required')"
+          class="text-danger"
+        >
+          Last Name is required.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          id="email"
+          formControlName="email"
+          placeholder=""
+        />
+      </div>
+      <div
+        *ngIf="
+          formContract.get('email')?.touched &&
+          formContract.get('email')?.invalid
+        "
+      >
+        <small
+          *ngIf="formContract.get('email')?.hasError('required')"
+          class="text-danger"
+        >
+          Email field is required.
+        </small>
+      </div>
+      @if(employeeId > 0){
+      <button
+        type="submit"
+        class="btn btn-primary m-2"
+        (click)="UpdateEmployee()"
+        [disabled]="formContract.invalid"
+
+      >
+        Save
+      </button>
+      <a routerLink="/employees">Back to list</a>
+      } @else{
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        (click)="AddEmployee()"
+        [disabled]="formContract.invalid"
+      >
+        Submit
+      </button>
+      <button type="reset" class="btn btn-secondary m-2">Resent</button>
+      <a routerLink="/employees">Back to list</a>
+
+      }
+    </form>
+  </div>
+</div>

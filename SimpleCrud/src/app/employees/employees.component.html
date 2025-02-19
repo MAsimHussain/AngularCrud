@@ -1,0 +1,161 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<div class="fluid-container">
+  <div class="">
+    <!-- <div class="col-6 m-2">
+      <form [formGroup]="formContract">
+        <div class="form-group">
+          <label for="First-name">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="First-name"
+            formControlName="firstName"
+            name="First-name"
+            [ngModel]="obj.firstName"
+            placeholder=""
+          />
+        </div>
+        <div
+          *ngIf="
+            formContract.get('firstName')?.touched &&
+            formContract.get('firstName')?.invalid
+          "
+        >
+          <small
+            *ngIf="formContract.get('firstName')?.hasError('required')"
+            class="text-danger"
+          >
+            First Name is required.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            name="last"
+            [ngModel]="obj.lastName"
+            id="last-name"
+            placeholder=""
+          />
+        </div>
+        <div
+          *ngIf="
+            formContract.get('lastName')?.touched &&
+            formContract.get('lastName')?.invalid
+          "
+        >
+          <small
+            *ngIf="formContract.get('lastName')?.hasError('required')"
+            class="text-danger"
+          >
+            Last Name is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngModel]="obj.email"
+            formControlName="email"
+            name="email"
+            id="email"
+            placeholder=""
+          />
+        </div>
+        <div
+          *ngIf="
+            formContract.get('email')?.touched &&
+            formContract.get('email')?.invalid
+          "
+        >
+          <small
+            *ngIf="formContract.get('email')?.hasError('required')"
+            class="text-danger"
+          >
+            Email field is required.
+          </small>
+        </div>
+        @if(formContract.value.id == null || formContract.value.id == 0){
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!formContract.valid"
+          (click)="AddEmployee()"
+        >
+          Submit
+        </button>
+        <button type="reset" class="btn btn-secondary m-2">Resent</button>
+
+        } @else{
+        <button
+          type="submit"
+          class="btn btn-primary m-2"
+          (click)="UpdateEmployee()"
+          [disabled]="!formContract.valid"
+        >
+          Save
+        </button>
+        }
+      </form>
+    </div> -->
+
+    <div class="col-12">
+      <a class="btn btn-primary m-1 mt-3 p-1" routerLink="/add">
+        Add New Employee
+      </a>
+      <h2 class="m-1">List of Employees</h2>
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <tr class="text-center">
+              <th scope="col-2">Sr.No</th>
+              <th scope="col-2">Id</th>
+              <th scope="col-2">First</th>
+              <th scope="col-2">Last</th>
+              <th scope="col-3">Email</th>
+              <th scope="col-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of employeeModel; track $index){
+            <tr class="text-center">
+              <th scope="row text-center">{{ $index + 1 }}</th>
+              <td>{{ item.id }}</td>
+              <td>{{ item.firstName }}</td>
+              <td>{{ item.lastName }}</td>
+              <td>{{ item.email }}</td>
+              <td>
+                <button
+                  routerLink="/add/{{ item.id }}"
+                  class="btn btn-primary m-2"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-danger"
+                  (click)="DeleteEmployee(item.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
